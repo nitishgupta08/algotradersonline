@@ -94,13 +94,15 @@ function BoxTwo({ submit, setSubmit, current }) {
               label="Strategy"
               autoWidth
               onChange={handleChange}>
-              {strategies.map((data, i) => {
+              {strategies ? strategies.map((data, i) => {
                 return (
                   <MenuItem value={data.id} key={i}>
                     {data.name}
                   </MenuItem>
                 );
-              })}
+              }) : <MenuItem value={0} key={1}>
+                Not available
+              </MenuItem>}
             </Select>
           </FormControl>
           <Typography

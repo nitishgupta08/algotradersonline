@@ -6,11 +6,11 @@ function TOC() {
     <Box
       component="section"
       sx={{
-        width: "50%",
         bgcolor: "background.paper",
         color: "text.primary",
+        m:5,
         p: 5,
-        borderRadius: 3,
+        borderRadius: 1.5,
       }}>
       <Box>
         <Typography
@@ -26,7 +26,7 @@ function TOC() {
             textAlign: "center",
             m: 1,
           }}>
-          IMPORTANT – PLEASE READ CAREFULLY
+          <strong>IMPORTANT – PLEASE READ CAREFULLY</strong>
         </Typography>
       </Box>
       <Box>
@@ -34,6 +34,7 @@ function TOC() {
           sx={{
             fontSize: "0.9rem",
           }}>
+            
           We one of several internet enthusiasts who trade in stocks in cash
           segment of NSE and BSE and invest in mutual funds. We discuss them
           here to educate my blog readers to help them identify the right stock
@@ -55,6 +56,14 @@ function TOC() {
           }}>
           We am <strong>NOT</strong> a SEBI registered advisor or a financial
           adviser.
+        </Typography>
+         <Typography
+          sx={{
+            fontSize: "0.9rem",
+            mt: 1,
+            mb: 1,
+          }}>
+          Our service includes products that are traded on margin and carry a risk of losses in excess of your deposited funds. The products may not be suitable for all investors. Please ensure that you fully understand the risks involved.
         </Typography>
 
         <Typography
@@ -91,6 +100,7 @@ function TOC() {
         <Typography
           sx={{
             fontSize: "0.9rem",
+     
           }}>
           Equities, Futures, options, and currency trading have large potential
           rewards, but also large potential risk. You must be aware of the risks

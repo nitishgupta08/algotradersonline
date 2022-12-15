@@ -33,12 +33,6 @@ const StrategiesCard = ({ props, toggle, strategy }) => {
         <CardContent>
           <Typography
             variant="h1"
-            sx={{ fontSize: "2rem", fontWeight: 500, m: 1 }}>
-            {props.id}
-          </Typography>
-
-          <Typography
-            variant="h1"
             sx={{ fontSize: "1.5rem", fontWeight: 600, m: 1 }}>
             {props.name}
           </Typography>

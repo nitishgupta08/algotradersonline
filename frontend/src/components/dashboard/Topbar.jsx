@@ -143,7 +143,7 @@ function Topbar({ toggle, drawer }) {
         component="nav"
         sx={{
           display: "flex",
-          justifyContent: isDesktop ? "space-between" : "end",
+          justifyContent: "space-between",
           alignItems: "center",
           p: 1,
         }}>
@@ -170,10 +170,20 @@ function Topbar({ toggle, drawer }) {
                 fontSize: "1.6rem",
                 fontWeight: 600,
               }}>
-              algoTrade.
+              algotradersonline.com
             </Typography>
           </>
-        ) : null}
+        ) : (<Typography
+            variant="h1"
+            sx={{
+              fontSize: "2rem",
+              fontWeight: 700,
+              color: "text.primary",
+              transition: "all .15s ease-in-out",
+            }}>
+          algotradersonline.com
+        </Typography>)}
+
 
         <Box>
           <IconButton

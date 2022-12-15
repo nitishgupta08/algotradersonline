@@ -1,14 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../UserContext";
 import {
-  Box,
-  Typography,
-  Button,
-  Card,
-  TextField,
-  Divider,
-  Snackbar,
-  Alert,
+    Box,
+    Typography,
+    Button,
+    Card,
+    TextField,
+    Divider,
+    Snackbar,
+    Alert, Grid,
 } from "@mui/material";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SecurityIcon from "@mui/icons-material/Security";
@@ -154,57 +154,62 @@ function Profile({ img }) {
             </Typography>
           </Box>
           <Divider />
-          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
-            <Box
-              component="img"
-              src={img}
-              alt="profile"
-              sx={{
-                height: "100px",
-                width: "100px",
-                backgroundColor: "black",
-                borderRadius: 50,
-                boxShadow: "1px 0px 20px 10px rgba(0,0,0,0.1)",
-              }}
-            />
-            <Box>
-              <Typography
-                variant="h1"
-                sx={{ fontSize: "2.5rem", fontWeight: 600 }}>
-                {current.data.username}
-              </Typography>
-              <Typography
-                variant="h1"
-                style={{ wordWrap: "break-word" }}
-                sx={{
-                  fontSize: "1.5rem",
-                  fontWeight: 500,
-                  mt: 1,
-                }}>
-                {current.data.email}
-              </Typography>
-              <Typography
-                variant="h1"
-                sx={{
-                  fontSize: "1rem",
-                  fontWeight: 500,
+            <Grid container spacing={2}>
+                <Grid item xs={3}>
+                    <Box
+                        component="img"
+                        src={img}
+                        alt="profile"
+                        sx={{
+                            height: "100px",
+                            width: "100px",
+                            backgroundColor: "black",
+                            borderRadius: 50,
+                            mt:2,
+                            boxShadow: "1px 0px 20px 10px rgba(0,0,0,0.1)",
+                        }}
+                    />
+                </Grid>
+                <Grid item xs='auto'>
+                    <Box>
+                        <Typography
+                            variant="h1"
+                            sx={{ fontSize: "2.5rem", fontWeight: 600 }}>
+                            {current.data.username}
+                        </Typography>
+                        <Typography
+                            variant="h1"
+                            style={{ wordWrap: "break-word" }}
+                            sx={{
+                                fontSize: "1.5rem",
+                                fontWeight: 500,
+                                mt: 1,
+                            }}>
+                            {current.data.email}
+                        </Typography>
+                        <Typography
+                            variant="h1"
+                            sx={{
+                                fontSize: "1rem",
+                                fontWeight: 500,
 
-                  display: "inline-block",
-                }}>
-                AliceblueID:
-              </Typography>
-              <Typography
-                variant="h1"
-                sx={{
-                  fontSize: "1.3rem",
-                  fontWeight: 600,
-                  ml: 1,
-                  display: "inline-block",
-                }}>
-                {current.data.aliceBlueID}
-              </Typography>
-            </Box>
-          </Box>
+                                display: "inline-block",
+                            }}>
+                            AliceblueID:
+                        </Typography>
+                        <Typography
+                            variant="h1"
+                            sx={{
+                                fontSize: "1.3rem",
+                                fontWeight: 600,
+                                ml: 1,
+                                display: "inline-block",
+                            }}>
+                            {current.data.aliceBlueID}
+                        </Typography>
+                    </Box>
+                </Grid>
+            </Grid>
         </Card>
 
         <Card

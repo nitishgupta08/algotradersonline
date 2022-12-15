@@ -93,9 +93,13 @@ function Login() {
           <Box>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               <Typography
-                variant="h1"
-                sx={{ fontSize: "3rem", fontWeight: 600, mt: 1, ml: 3 }}>
-                algoTrade.
+                  variant="h1"
+                  sx={{
+                    fontSize: "3rem",
+                    fontWeight: 600,
+                      ml:2,
+                  }}>
+                algotradersonline.com
               </Typography>
             </Link>
           </Box>

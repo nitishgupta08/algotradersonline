@@ -118,7 +118,8 @@ const Register = () => {
       })
       .then((data) => {
         if (data.data.token !== null) {
-          navigate("/login");
+          setContact(true);
+
         }
       })
       .catch((error) => {
@@ -134,6 +135,12 @@ const Register = () => {
     document.title = "Register";
   }, []);
 
+  const [contact,setContact] = useState(false)
+
+  const handleContact = () => {
+
+  }
+
   return (
     <>
       <Backdrop
@@ -145,6 +152,16 @@ const Register = () => {
         open={bopen}
         onClick={handleClose}>
         <TOC />
+      </Backdrop>
+      <Backdrop
+          sx={{
+            color: "#fff",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            backdropFilter: "blur(4px)",
+          }}
+          open={contact}
+          onClick={handleContact}>
+        <Contact navigate={navigate} setContact={setContact}/>
       </Backdrop>
       <Snackbar
         open={open}
@@ -161,9 +178,13 @@ const Register = () => {
           <Box>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               <Typography
-                variant="h1"
-                sx={{ fontSize: "3rem", fontWeight: 600, mt: 1, ml: 3 }}>
-                algoTrade.
+                  variant="h1"
+                  sx={{
+                    fontSize: "3rem",
+                    fontWeight: 600,
+                    ml:2,
+                  }}>
+                algotradersonline.com
               </Typography>
             </Link>
           </Box>
@@ -345,5 +366,63 @@ const Register = () => {
     </>
   );
 };
+
+
+const Contact = ({navigate,setContact}) => {
+  return (
+      <Box
+          component="section"
+          sx={{
+            bgcolor: "background.paper",
+            color: "text.primary",
+            m:5,
+            p: 5,
+            borderRadius: 1.5,
+            width:"45%",
+          }}>
+        <Box>
+          <Typography
+              variant="h3"
+              sx={{ fontSize: "2rem", fontWeight: 700, textAlign: "center" }}>
+            Thanks for Registering!
+          </Typography>
+            <Box sx={{display:"flex", justifyContent:"center"}}>
+                <Box
+                    component="img"
+                    sx={{
+                        height: 150,
+                        m:2
+
+                    }}
+                    alt="Yay!!"
+                    src="/confetti.png"
+                />
+            </Box>
+
+        </Box>
+        <Box>
+          <Typography
+              sx={{
+                mt:2,
+                fontSize: "1.2rem",
+                textAlign:'center'
+              }}>
+            We are thrilled to have you on our website. Now, to <strong>activate</strong> your account please contact us
+              at <a href="tel:+91 818833727">+91 818833727</a> or drop a mail at <a href="mailto:mukesh.algotraders@gmail.com">mukesh.algotraders@gmail.com</a>.
+          </Typography>
+            <Typography
+                sx={{
+                    mt:2,
+                    fontSize: "1.1rem",
+                    textAlign:'center',
+                    fontWeight:700
+                }}>
+                You won't be able to login till your account is activated.
+            </Typography>
+            <Button variant="contained" sx={{mt:2, width:"100%"}} onClick={() => {setContact(false);navigate("/login");}}>Continue to Login</Button>
+        </Box>
+      </Box>
+  );
+}
 
 export default Register;

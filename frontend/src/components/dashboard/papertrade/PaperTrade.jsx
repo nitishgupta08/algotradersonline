@@ -77,8 +77,7 @@ function PaperTrade() {
           <Card
             sx={{
               p: 2,
-              ml: 3,
-              borderRadius: 3,
+              borderRadius: 1.5,
               boxShadow: "0px 0px 10px 5px rgba(0,0,0,0.1)",
               transition: " all .15s ease-in-out",
             }}>
@@ -89,7 +88,7 @@ function PaperTrade() {
           <Card
             sx={{
               p: 2,
-              borderRadius: 3,
+              borderRadius: 1.5,
               boxShadow: "0px 0px 10px 5px rgba(0,0,0,0.1)",
               transition: " all .15s ease-in-out",
             }}>
@@ -100,8 +99,7 @@ function PaperTrade() {
           <Card
             sx={{
               p: 2,
-              ml: 3,
-              borderRadius: 3,
+              borderRadius: 1.5,
               boxShadow: "0px 0px 10px 5px rgba(0,0,0,0.1)",
               transition: " all .15s ease-in-out",
             }}>

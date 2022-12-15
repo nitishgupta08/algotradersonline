@@ -13,7 +13,7 @@ import SuccessCard from "./SuccessCard";
 import LogoutCheck from "./LogoutCheck";
 import { StrategiesContext } from "../../../StrategiesContext";
 import { Box, Backdrop, Drawer, Grid } from "@mui/material";
-import OptionsData from "../optionsChain/OptionsData";
+import OptionsRoot from "../optionsChain/OptionRoot"
 import { BaseURL } from "../../../BaseURL";
 
 function Dashboard() {
@@ -211,7 +211,6 @@ function Dashboard() {
           component="main"
           sx={{
             display: "flex",
-            height: "100vh",
             bgcolor: "background.default",
             color: "text.primary",
             transition: " all .15s ease-in-out",
@@ -251,7 +250,7 @@ function Dashboard() {
                   <Route path="paperTrade/*" element={<PaperTrade />} />
                   <Route path="portfolio" element={<Portfolio />} />
                   <Route path="profile" element={<Profile />} />
-                  <Route path="optionChain" element={<OptionsData />} />
+                  <Route path="optionChain" element={<OptionsRoot />} />
                   <Route path="*" element={<Navigate to="portfolio" />} />
                 </Routes>
               </Box>

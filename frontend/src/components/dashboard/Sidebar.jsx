@@ -4,7 +4,7 @@ import TimelineIcon from "@mui/icons-material/Timeline";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import DataThresholdingIcon from "@mui/icons-material/DataThresholding";
 import { Link } from "react-router-dom";
-import { Typography, Tabs, Tab, Box, Divider } from "@mui/material";
+import { Tabs, Tab, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const LinkTabs = styled((props) => (
@@ -77,27 +77,14 @@ function Sidebar({ handleMiniOpen, handleMiniClose }) {
         backgroundColor: "background.default",
         transition: " all .15s ease-in-out",
         position: "fixed",
-        width: "9vw",
+        width: "7vw",
         ...(mini === false && {
-          width: "20vw",
+          width: "15vw",
           boxShadow: "1px 0px 20px 10px rgba(0,0,0,0.1)",
         }),
       }}>
       {mini ? (
         <>
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: "1.4rem",
-              fontWeight: 600,
-              ml: 1,
-              pt: 3,
-              color: "text.secondary",
-              transition: "all .15s ease-in-out",
-            }}>
-            algoTrade.
-          </Typography>
-          <Divider sx={{ borderBottomWidth: 1, m: 1 }} />
           <LinkTabs
             value={value}
             onChange={handleChange}
@@ -122,19 +109,6 @@ function Sidebar({ handleMiniOpen, handleMiniClose }) {
         </>
       ) : (
         <>
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: "2rem",
-              fontWeight: 600,
-              ml: 10,
-              pt: 3,
-              color: "text.secondary",
-              transition: "all .15s ease-in-out",
-            }}>
-            algoTrade.
-          </Typography>
-          <Divider sx={{ borderBottomWidth: 1, m: 1 }} />
 
           <LinkTabs
             value={value}

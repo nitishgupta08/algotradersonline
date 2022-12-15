@@ -8,6 +8,7 @@ import Register from "./components/register/Register";
 import Dashboard from "./components/dashboard/root/Dashboard";
 import ForgotPass from "./components/login/ForgotPass";
 import { Routes, Route, Navigate } from "react-router-dom";
+import {Helmet} from 'react-helmet';
 
 const getDesignTokens = (mode) => ({
   typography: {
@@ -60,7 +61,7 @@ const getDesignTokens = (mode) => ({
 });
 
 function App() {
-  //Themeing
+  //Theming
   const [mode, setMode] = useState("light");
   const colorMode = useMemo(
     () => ({
@@ -92,6 +93,9 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
+          <Helmet>
+              {mode === 'light' ? <style>{'body { background-color: rgb(246,246,248); }'}</style> : <style>{'body { background-color: rgb(35,37,57); }'}</style>}
+          </Helmet>
         <UserContext.Provider value={providerValue}>
           <Routes>
             {!user && (

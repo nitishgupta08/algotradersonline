@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
+import InfoIcon from '@mui/icons-material/Info';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import Divider from '@mui/material/Divider';
 import {
   Tooltip,
   Box,
@@ -13,12 +16,8 @@ import TOC from "./TOC";
 
 function Footer() {
   const [open, setOpen] = useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
+  const [about,setAbout] = useState(false);
+
   return (
     <Box component="footer" sx={{ display: "flex", mt: 2 }}>
       <Backdrop
@@ -28,15 +27,30 @@ function Footer() {
           backdropFilter: "blur(4px)",
         }}
         open={open}
-        onClick={handleClose}>
+        onClick={() => setOpen(false)}>
         <TOC />
+      </Backdrop>
+       <Backdrop
+        sx={{
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          backdropFilter: "blur(4px)",
+        }}
+        open={about}
+        onClick={() => setAbout(false)}>
+        <About />
       </Backdrop>
       <Grid container>
         <Grid item xs={6}>
           <Box component="section">
-            <Typography variant="h3" sx={{ fontSize: "2rem", fontWeight: 600 }}>
-              algoTrade.
-            </Typography>
+              <Typography
+                  variant="h1"
+                  sx={{
+                      fontSize: "2rem",
+                      fontWeight: 600,
+                  }}>
+                  algotradersonline.com
+              </Typography>
             <Typography variant="subtitle1" sx={{ fontSize: "1rem" }}>
               Automate your trade with us
             </Typography>
@@ -51,7 +65,7 @@ function Footer() {
                   cursor: "pointer",
                   color: "primary.main",
                 }}
-                onClick={handleToggle}>
+                onClick={() => setOpen(true)}>
                 Terms and Conditions
               </Typography>
               <Typography variant="subtitle2" sx={{ mt: 10, ml: 1, mb: 2 }}>
@@ -63,12 +77,20 @@ function Footer() {
         <Grid item xs={6}>
           <Box
             component="section"
-            sx={{ display: "flex", justifyContent: "end" }}>
+            sx={{ display: "flex", justifyContent: "end", alignItems: "center" }}>
+
+             <Tooltip title="About" placement="top">
+              <IconButton
+                sx={{ color: "primary.main" }}
+                onClick={() => setAbout(true)}>
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Mail" placement="top">
               <IconButton
                 sx={{ color: "primary.main" }}
                 onClick={() =>
-                  window.open("mailto:system.administrator@lnmiit.ac.in")
+                  window.open("mailto:mukesh.algotraders@gmail.com")
                 }>
                 <EmailIcon />
               </IconButton>
@@ -95,3 +117,153 @@ function Footer() {
 }
 
 export default Footer;
+
+const About = () => {
+  const a = "https://avatars.dicebear.com/api/bottts/anupam-nagpal.svg";
+  const n = "https://avatars.dicebear.com/api/bottts/Nitish-kumar-gupta.svg";
+  const s = "https://avatars.dicebear.com/api/bottts/sanyam-lodha.svg";
+  const t = "https://avatars.dicebear.com/api/bottts/Tanmaylodha.svg";
+
+  return(
+     <Box
+      component="section"
+      sx={{
+        bgcolor: "background.paper",
+        color: "text.primary",
+        p: 3,
+        borderRadius: 3,
+      }}>
+      <Box sx={{display:"flex", justifyContent:"center"}}>
+        <Typography sx={{ fontSize: "2rem", fontWeight: 600 }}>
+          Developers
+        </Typography>
+      </Box>
+      <Divider sx={{m:1}}/>
+      <Box sx={{m:2, display:"flex",alignItems:"center"}}>
+        <Box
+              component="img"
+              src={a}
+              alt="profile"
+              sx={{
+                height: "75px",
+                width: "75px",
+                backgroundColor: "black",
+                borderRadius: 50,
+                boxShadow: "1px 0px 20px 10px rgba(0,0,0,0.1)",
+                p:0.5,
+              }}
+            />
+        <Box sx={{display:"flex", flexDirection:"column", alignItems:"start",ml:2}}>
+        <Typography sx={{ fontSize: "1.2rem", fontWeight: 600 }}>
+          Anupam Nagpal
+        </Typography>
+          <IconButton
+            sx={{ mt: 0.5, p: 0 }}
+            onClick={() =>
+              window.open(
+                "https://github.com/Anupam0107",
+                "_blank",
+                "noreferrer"
+              )
+            }>
+            <GitHubIcon sx={{ color:"text.primary"}} />
+          </IconButton>
+        </Box>
+      </Box>
+      <Box sx={{ m: 2, display: "flex", alignItems: "center" }}>
+           <Box
+              component="img"
+              src={n}
+              alt="profile"
+              sx={{
+                height: "75px",
+                width: "75px",
+                backgroundColor: "black",
+                borderRadius: 50,
+                boxShadow: "1px 0px 20px 10px rgba(0,0,0,0.1)",
+                p:0.5,
+              }}
+            />
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "start", ml: 2 }}>
+          <Typography sx={{ fontSize: "1.2rem", fontWeight: 600 }}>
+            Nitish Kumar Gupta
+          </Typography>
+          <IconButton
+          sx={{mt:0.5,p:0}}
+            onClick={() =>
+              window.open(
+                "https://github.com/nitishgupta08",
+                "_blank",
+                "noreferrer"
+              )
+            }>
+            <GitHubIcon sx={{ color: "text.primary" }} />
+          </IconButton>
+        </Box>
+        </Box>
+      <Box sx={{ m: 2, display: "flex", alignItems: "center" }}>
+          <Box
+              component="img"
+              src={s}
+              alt="profile"
+              sx={{
+                height: "75px",
+                width: "75px",
+                backgroundColor: "black",
+                borderRadius: 50,
+                boxShadow: "1px 0px 20px 10px rgba(0,0,0,0.1)",
+                p:0.5,
+              }}
+            />
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "start", ml: 2 }}>
+          <Typography sx={{ fontSize: "1.2rem", fontWeight: 600 }}>
+            Sanyam Lodha
+          </Typography>
+          <IconButton
+            sx={{ mt: 0.5, p: 0 }}
+            onClick={() =>
+              window.open(
+                "https://github.com/Sanyam0908",
+                "_blank",
+                "noreferrer"
+              )
+            }>
+            <GitHubIcon sx={{ color: "text.primary" }} />
+          </IconButton>
+        </Box>
+        </Box>
+      <Box sx={{ m: 2, display: "flex", alignItems: "center" }}>
+           <Box
+              component="img"
+              src={t}
+              alt="profile"
+              sx={{
+                height: "75px",
+                width: "75px",
+                backgroundColor: "black",
+                borderRadius: 50,
+                boxShadow: "1px 0px 20px 10px rgba(0,0,0,0.1)",    
+                p:0.5,
+              }}
+            />
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "start", ml: 2 }}>
+          <Typography sx={{ fontSize: "1.2rem", fontWeight: 600 }}>
+            Tanmay Lodha
+          </Typography>
+          <IconButton
+            sx={{ mt: 0.5, p: 0 }}
+            onClick={() =>
+              window.open(
+                "https://github.com/TanmayLodha",
+                "_blank",
+                "noreferrer"
+              )
+            }>
+            <GitHubIcon sx={{ color: "text.primary" }} />
+          </IconButton>
+        </Box>
+        </Box>
+ 
+    </Box>
+  );
+}

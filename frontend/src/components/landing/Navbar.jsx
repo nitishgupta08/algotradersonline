@@ -22,8 +22,14 @@ export default function Navbar() {
           height: "70px",
         }}>
         <Box>
-          <Typography variant="h1" sx={{ fontSize: "3rem", fontWeight: 600 }}>
-            algoTrade.
+          <Typography
+              variant="h1"
+              sx={{
+                fontSize: "3rem",
+                fontWeight: 600,
+                  ml:2,
+              }}>
+            algotradersonline.com
           </Typography>
         </Box>
         <Box>

@@ -11,7 +11,8 @@ import {
     TextField,
     Typography,
     Snackbar,
-    Alert
+    Alert,
+    Slider
 } from "@mui/material";
 import {BaseURL} from "../../../BaseURL";
 import {UserContext} from "../../../UserContext";
@@ -21,8 +22,10 @@ import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DateTimePicker} from '@mui/x-date-pickers/DateTimePicker';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import TextDecreaseIcon from '@mui/icons-material/TextDecrease';
+import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
 
-const HandleOptions = () => {
+const HandleOptions = ({option}) => {
     const {user} = useContext(UserContext);
     const juser = JSON.parse(user);
     const [data, setData] = useState(null);
@@ -31,13 +34,16 @@ const HandleOptions = () => {
     const [value, setValue] = useState("latest");
     const [date, setDate] = useState(new Date());
     const [open,setOpen] = useState(false);
+    const [bold,setBold] = useState(true);
+    const [fsize, setFsize] = useState(1);
+    console.log(date);
 
     const snackBarClose = () => {
         setOpen(false);
     };
 
     const getData = () => {
-        fetch(BaseURL + "api/get_nifty/", {
+        fetch(BaseURL + option[0], {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -62,7 +68,7 @@ const HandleOptions = () => {
     const getHisto = () => {
         const request = {date: date};
 
-        fetch(BaseURL + "api/get_nifty_histo/", {
+        fetch(BaseURL + option[1], {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -99,6 +105,7 @@ const HandleOptions = () => {
         pcoc: true,
         pco: true,
     });
+
 
     useEffect(() => {
         getData();
@@ -150,20 +157,20 @@ const HandleOptions = () => {
                                                     }}
                                                 >
                                                     <FormControlLabel value="latest" control={<Radio/>} label="Latest"/>
-                                                    <FormControlLabel value="histo" control={<Radio/>}
-                                                                      label="Historical"/>
+                                                    <FormControlLabel value="histo" control={<Radio/>} label="Historical"/>
                                                 </RadioGroup>
                                             </FormControl>
                                         </Grid>
 
                                         <Grid item xs={9} sx={{pt: 1}}>
                                             {value === "histo" && (<Box>
-                                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                <LocalizationProvider dateAdapter={AdapterDayjs} >
                                                     <DateTimePicker
                                                         renderInput={(params) => <TextField {...params} />}
                                                         label="Select date and time"
                                                         value={date}
                                                         disableFuture={true}
+                                                        inputFormat="DD/MM/YYYY hh:mm A"
                                                         onChange={(newValue) => {
                                                             setDate(newValue);
                                                         }}
@@ -173,28 +180,82 @@ const HandleOptions = () => {
                                                     type="submit"
                                                     variant="contained"
                                                     sx={{
-                                                        ml: 5,
+                                                        ml: 2,
                                                         height: "55px",
                                                     }}
                                                     onClick={() => getHisto()}>
                                                     Fetch
+                                                </Button>
+                                                <Button
+                                                    type="submit"
+                                                    variant="contained"
+                                                    sx={{
+                                                        ml: 1,
+                                                        height: "55px",
+                                                    }}
+                                                    onClick={() => {setDate(new Date(new Date(date).getTime() - 2*60000));getHisto();}}>
+                                                    -2 MIN
+                                                </Button>
+                                                <Button
+                                                    type="submit"
+                                                    variant="contained"
+                                                    sx={{
+                                                        ml: 1,
+                                                        height: "55px",
+                                                    }}
+                                                    onClick={() => {setDate(new Date(new Date(date).getTime() + 2*60000));getHisto();}}>
+                                                    +2 MIN
                                                 </Button>
                                             </Box>)}
                                         </Grid>
                                     </Grid>
 
                                     <Filters filter={filter} setFilter={setFilter}/>
+
+                                    <Typography
+                                        variant="subtitle"
+                                        sx={{fontSize: "0.9rem", fontWeight: 200,ml:2,mt:1}}>
+                                        Font Settings
+                                    </Typography>
+                                    <Box sx={{display:"flex", alignItems:"center",ml:2}}>
+
+                                        <Box sx={{display:"flex",width:"30%", alignItems:"center"}}>
+                                            <TextDecreaseIcon/>
+                                            <Slider
+                                                value={fsize}
+                                                onChange={(e)=>setFsize(e.target.value)}
+                                                step={0.25}
+                                                marks
+                                                min={1}
+                                                max={2}
+                                                sx={{ml:2,mr:2}}
+                                            />
+                                            <TextIncreaseIcon/>
+                                        </Box>
+                                        <Button
+                                            type="submit"
+                                            variant={bold === true ? "contained" : "outlined"}
+                                            sx={{
+                                                ml: 4,
+                                            }}
+                                            onClick={() => setBold(!bold)}>
+                                            Bold
+                                        </Button>
+
+                                    </Box>
+
+
                                 </Box>
 
                             </Grid>
                             <Grid item xs={4}>
-                                <LiveData setSpot={setSpot} user={juser}/>
+                                <LiveData setSpot={setSpot} user={juser} option={option}/>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                        {value === "latest" && (<OptionsTable data={data} filter={filter} spot={spot}/>)}
-                        {value === "histo" && (<OptionsTable data={histo} filter={filter} spot={spot}/>)}
+                        {value === "latest" && (<OptionsTable data={data} filter={filter} spot={spot} bold={bold} fsize={fsize}/>)}
+                        {value === "histo" && (<OptionsTable data={histo} filter={filter} spot={spot} bold={bold} fsize={fsize}/>)}
                     </Grid>
                 </Grid>
             </Card>
@@ -202,8 +263,8 @@ const HandleOptions = () => {
     );
 }
 
-const LiveData = ({setSpot, user}) => {
-    const request = {"instrument": ["NIFTY SPOT", "NIFTY FUT", "INDIA VIX"]}
+const LiveData = ({setSpot, user, option}) => {
+    const request = {"instrument": option[2]}
     const [liveData, setLiveData] = useState(null);
 
     const getLiveData = () => {
@@ -223,7 +284,7 @@ const LiveData = ({setSpot, user}) => {
             })
             .then((rData) => {
                 setLiveData(rData);
-                setSpot(Math.floor(rData[0]['ltp'] / 50) * 50); // NIFTY SPOT LTP
+                setSpot(Math.floor(rData[0]['ltp'] / option[3]) * option[3]);
             })
             .catch((error) => {
                 console.log(error);

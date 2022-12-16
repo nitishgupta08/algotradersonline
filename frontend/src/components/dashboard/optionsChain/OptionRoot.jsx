@@ -22,6 +22,9 @@ const TabPanel = (props) => {
 
 const OptionRoot = () => {
     const [value, setValue] = useState(0);
+    const nifty = ["api/get_nifty/", "api/get_nifty_histo/", ["NIFTY SPOT", "NIFTY FUT", "INDIA VIX"],50];
+    const banknifty = ["api/get_banknifty/", "api/get_banknifty_histo/", ["BANKNIFTY SPOT", "BANKNIFTY FUT", "INDIA VIX"],100];
+
 
     return (
         <Box>
@@ -31,10 +34,10 @@ const OptionRoot = () => {
             </Tabs>
 
             <TabPanel value={value} index={0}>
-                <HandleOptions/>
+                <HandleOptions option={nifty}/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <HandleOptions/>
+                <HandleOptions option={banknifty}/>
             </TabPanel>
         </Box>
     )

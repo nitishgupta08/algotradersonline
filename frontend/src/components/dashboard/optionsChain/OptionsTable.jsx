@@ -2,7 +2,7 @@ import {styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import React from "react";
 import {useTheme} from "@mui/material/styles";
 
-const OptionsTable = ({data, filter, spot}) => {
+const OptionsTable = ({data, filter, spot, bold, fsize}) => {
     const theme = useTheme();
     const HeadTableCell = styled(TableCell)(() => ({
         borderWidth: 0.1,
@@ -477,6 +477,8 @@ const OptionsTable = ({data, filter, spot}) => {
                                         spot={spot}
                                         theme={theme}
                                         arr={arr}
+                                        bold={bold}
+                                        fsize={fsize}
                                     />
                                 );
                             })
@@ -500,7 +502,7 @@ const OptionsTable = ({data, filter, spot}) => {
     )
 };
 
-const StrikeRow = ({row, filter, spot, theme, arr}) => {
+const StrikeRow = ({row, filter, spot, theme, arr, bold,fsize}) => {
     const StyledTableCell = styled(TableCell)(({ theme, ce,pe}) => ({
         backgroundColor:
             row["Strike_Price"] === spot
@@ -510,10 +512,11 @@ const StrikeRow = ({row, filter, spot, theme, arr}) => {
                     : "background.paper",
         borderWidth: 0.1,
         textAlign:"center",
-        fontWeight: row["Strike_Price"] === spot ? "600" : null,
+        fontWeight: row["Strike_Price"] === spot ? "600" : bold ? 700 : 500,
         borderColor:
             theme.palette.mode === "dark" ? "rgba(255,255,255,1)" : "rgba(0,0,0,0.2)",
         borderStyle: "solid",
+        fontSize:`${fsize}rem`
     }));
     return (
         <TableRow key={row["Strike_Price"]}>
